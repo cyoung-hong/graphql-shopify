@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.5.1",
+    "knex": "^0.21.19",
+    "objection": "^2.2.15",
+    "path": "^0.12.7",
+    "pg": "^8.6.0"
+  },
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "migrate": "knex migrate:latest --knexfile ./db/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile ./db/knexfile.js",
+    "make-dummy-seed": "knex seed:make dummy --knexfile ./db/knexfile.js",
+    "dummy-seed": "knex seed:run --knexfile ./db/knexfile.js",
+    "dev-seed": "knex seed:run --knexfile ./db/knexfile.js"
+  },
+  "name": "seedwell-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "chris young-hong",
+  "license": "ISC",
+  "description": ""
+}
