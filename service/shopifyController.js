@@ -1,4 +1,5 @@
-const express = require('express');
+const express = require("express");
+const Product = require("../db/models/product.js");
 
 const getProducts = async (req, res) => {
   try {
@@ -13,6 +14,48 @@ const getProducts = async (req, res) => {
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
-}
+};
 
-module.exports = getProducts
+export const createProduct = async (req, res) => {
+  // Check is user is authenticated
+  // Check if user made request already
+  try {
+    /*
+     {
+        id,
+        title,
+        status,
+      }
+    */
+    const {id, title, status} = req.body;
+
+    // Check if there is a request that matches these two fields
+    const foundProduct = await Product.query().find({
+      "id": id
+    });
+
+    if (foundProduct) {
+      return res.status(409).json({ error: "Product already exists." });
+    }
+
+    const newProduct = new Product({  
+      id,
+      title,
+      status,
+    });
+
+    newProduct
+      .save()
+      .then((savedProduct) => {
+        res.status(201).json({ savedProduct });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch (err) {
+    console.log(err);
+    res.status(502).json({ err });
+  }
+};
+
+module.exports = getProducts;
