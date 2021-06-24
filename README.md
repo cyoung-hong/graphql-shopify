@@ -44,11 +44,10 @@ And run in the following order.
 
 ### 4. Test the API ###
 `npm run server`
+
 By default the server is hosted at: `localhost:8080`
 
-1. The mock API call is at `localhost:8080/product/getProducts`
-This will populate the filtered product and product variant tables. 
-
+1. Mock API Call: `localhost:8080/product/getProducts`
 2. GraphQL API: `localhost:8080/graphql`
 
 ### NOTE: Make sure nodemon package is installed. ###
